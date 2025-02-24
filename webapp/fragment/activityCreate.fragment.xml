@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:smartField="sap.ui.comp.smartfield" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" height="100%">
+	<Dialog title="{i18n>createAct}">
+		<content>
+			<smartForm:SmartForm id="activityPopup" app:defaultCheckBoxDisplayBehaviour="OnOff" app:defaultDropDownDisplayBehaviour="idAndDescription"
+				editable="{fragmentModel>/Visible}">
+				<smartForm:Group>
+					<smartForm:GroupElement>
+						<smartField:SmartField value="{actNo}"/>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement>
+						<smartField:SmartField value="{actTeam}">
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="idAndDescription" preventInitialDataFetchInValueHelpDialog="false" controlType="dropDownList"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement>
+						<smartField:SmartField value="{actCustomer}">
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="idAndDescription" preventInitialDataFetchInValueHelpDialog="false"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement>
+						<smartField:SmartField value="{actLocation}"/>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement>
+						<smartField:SmartField value="{actDate}"/>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement>
+						<smartField:SmartField value="{actTime}"/>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement>
+						<smartField:SmartField value="{actDescription}" width="100%"/>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement>
+						<smartField:SmartField value="{actInvoice}"/>
+					</smartForm:GroupElement>
+				</smartForm:Group>
+			</smartForm:SmartForm>
+		</content>
+		<beginButton>
+			<Button type="Accept" text="{i18n>save}" press="handleSave" visible="{fragmentModel>/Visible}"/>
+		</beginButton>
+		<endButton>
+			<Button type="Reject" text="{i18n>cancel}" press="handleClose"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

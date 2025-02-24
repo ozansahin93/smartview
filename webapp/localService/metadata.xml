@@ -1,0 +1,42 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZABAP_SV_ACTIVITY_SRV" xml:lang="tr" sap:schema-version="1">
+            <EntityType Name="CreateActivicty" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="actNo"/>
+                </Key>
+                <Property Name="actNo" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Aktivite No" sap:sortable="false"/>
+                <Property Name="actTeam" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Takım" sap:sortable="false"/>
+                <Property Name="actCustomer" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Müşteri" sap:sortable="false"/>
+                <Property Name="actLocation" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Lokasyon" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="actDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:unicode="false" sap:label="Gün" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="actTime" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Saat" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="actDescription" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Açıklama" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="actInvoice" Type="Edm.Boolean" sap:unicode="false" sap:label="Fatura Durum" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="FapHLifnr" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zbukr"/>
+                    <PropertyRef Name="Lifnr"/>
+                </Key>
+                <Property Name="Zbukr" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Ödeyen ŞK" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Satıcı" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Ad" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZABAP_SV_ACTIVITY_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="CreateActivictySet" EntityType="ZABAP_SV_ACTIVITY_SRV.CreateActivicty" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="FapHLifnrSet" EntityType="ZABAP_SV_ACTIVITY_SRV.FapHLifnr" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <Annotation
+                xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Core.SchemaVersion" String="1.0.0"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZABAP_SV_ACTIVITY_SRV/$metadata"/>
+                    <atom:link
+                        xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZABAP_SV_ACTIVITY_SRV/$metadata"/>
+                    </Schema>
+                </edmx:DataServices>
+            </edmx:Edmx>

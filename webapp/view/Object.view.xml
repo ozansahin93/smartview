@@ -1,0 +1,47 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic" xmlns:footerbar="sap.ushell.ui.footerbar"
+	xmlns:smartVariant="sap.ui.comp.smartvariants" xmlns:core="sap.ui.core" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:smartField="sap.ui.comp.smartfield" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:l="sap.ui.layout" xmlns:table="sap.ui.table"
+	controllerName="com.cozumevi.fiori_smartview.controller.Object">
+	<Page showHeader="true" title="{i18n>appObjectTitle}" showNavButton="true" navButtonPress="onNavBack" showFooter="true"
+		class="positionAbsolute sapUiResponsiveContentPadding">
+		<content>
+			<smartVariant:SmartVariantManagement id="pageVariantRpr" persistencyKey="SmartVariantPKeyRpr" showCreateTile="false"
+				select="onSelectpageVariantRpr"/>
+			<smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="ReportTeamSet" showFilterConfiguration="true" smartVariant="pageVariantRpr"
+				persistencyKey="SmartFilterDuranVarlikReport" useToolbar="false" search="onSearch">
+				<smartFilterBar:controlConfiguration>
+					<smartFilterBar:ControlConfiguration key="actTeam" preventInitialDataFetchInValueHelpDialog="false" controlType="dropDownList"/>
+				</smartFilterBar:controlConfiguration>
+				<smartFilterBar:controlConfiguration>
+					<smartFilterBar:ControlConfiguration key="actDate" visibleInAdvancedArea="true" displayBehaviour="descriptionOnly"
+						preventInitialDataFetchInValueHelpDialog="false" label="Aktivite Tarih" mandatory="mandatory">
+						<smartFilterBar:customControl>
+							<DateRangeSelection xmlns="sap.m" id="idPdate" displayFormat="short"/>
+						</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+			</smartFilterBar:SmartFilterBar>
+			<smartTable:SmartTable id="smartTable" entitySet="ReportTeamSet" enableAutoBinding="false" 
+				initiallyVisibleFields="actNo,actUname,actTeam,actTeamDesc,actCustomer,actCustoımerDesc,actLocation,actDate,actTime,actDescription,actInvoice"
+				requestAtLeastFields="actNo" smartFilterId="smartFilterBarID" beforeExport="onBeforeExport"
+				smartVariant="pageVariant" showFullScreenButton="true" tableType="ResponsiveTable" useExportToExcel="true"
+				useVariantManagement="false" dataReceived="onDataReceived" useTablePersonalisation="true"
+				header="{i18n>appObjectTitle}" showRowCount="true" beforeRebindTable="onBeforeRebindTable" enableAutoColumnWidth="true">
+				<table:Table rowActionCount="15" selectionMode="None">
+					<table:columns>
+						<table:Column hAlign="Begin" width="8rem">
+							<table:customData>
+								<core:CustomData key="p13nData" value='\{"columnKey": "actDate", "leadingProperty": "actDate", "columnIndex": 6}'/>
+							</table:customData>
+							<Text text="{/#ReportTeam/actDate/@sap:label}" wrapping="true"/>
+							<table:template>
+								<Text text="{path:'actDate',type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd.MM.yyyy'}}"/>
+							</table:template>
+						</table:Column>
+					</table:columns>
+				</table:Table>
+			</smartTable:SmartTable>
+		</content>
+	</Page>
+</mvc:View>

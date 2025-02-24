@@ -1,0 +1,65 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns:footerbar="sap.ushell.ui.footerbar"
+	xmlns:u="sap.ui.unified" xmlns:smartVariant="sap.ui.comp.smartvariants" xmlns:core="sap.ui.core" displayBlock="true"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:smartForm="sap.ui.comp.smartform" xmlns:smartField="sap.ui.comp.smartfield" xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:l="sap.ui.layout" xmlns:table="sap.ui.table" controllerName="com.cozumevi.fiori_smartview.controller.Worklist">
+	<semantic:FullscreenPage id="page" navButtonPress="onNavBack" showNavButton="true" title="{i18n>worklistTitle}" busy="{objectView>/busy}"
+		busyIndicatorDelay="{objectView>/delay}" class="positionAbsolute sapUiResponsiveContentPadding">
+		<semantic:content>
+			<l:Splitter height="570px">
+				<l:VerticalLayout>
+					<u:Calendar class="displayTableRow" startDateChange="handleStartDateChange" id="calendarAct" months="2"
+						select="handleCalendarSelect" legend="legend"/>
+					<u:CalendarLegend id="legend" standardItems="Today">
+						<u:items>
+							<u:CalendarLegendItem type="Type01" text="{i18n>type01}"/>
+							<u:CalendarLegendItem type="Type02" text="{i18n>type02}"/>
+							<u:CalendarLegendItem type="Type03" text="{i18n>type03}"/>
+							<u:CalendarLegendItem type="Type04" text="{i18n>type04}"/>
+							<u:CalendarLegendItem type="Type05" text="{i18n>type05}"/>
+							<u:CalendarLegendItem type="Type06" text="{i18n>type06}"/>
+							<u:CalendarLegendItem type="Type07" text="{i18n>type07}"/>
+							<u:CalendarLegendItem type="Type08" text="{i18n>type08}"/>
+						</u:items>
+					</u:CalendarLegend>
+					<l:layoutData>
+						<l:SplitterLayoutData size="570px"/>
+					</l:layoutData>
+				</l:VerticalLayout>
+				<smartTable:SmartTable id="smartTable" entitySet="ReportSet" enableAutoBinding="true"
+					initiallyVisibleFields="actNo,actUname,actTeam,actTeamDesc,actCustomer,actCustomerDesc,actLocation,actDate,actTime,actDescription,actInvoice"
+					requestAtLeastFields="actNo" smartFilterId="smartFilter" beforeExport="onBeforeExport" smartVariant="pageVariant"
+					showFullScreenButton="true" tableType="ResponsiveTable" useExportToExcel="true"  useVariantManagement="false"
+					dataReceived="onDataReceived" useTablePersonalisation="true" header="{i18n>dvReport}" showRowCount="true"
+					beforeRebindTable="onBeforeRebindTable" >
+					<table:Table rowActionCount="15" selectionMode="None">
+						<table:columns>
+							<table:Column hAlign="Begin" width="8rem">
+								<table:customData>
+									<core:CustomData key="p13nData" value='\{"columnKey": "actDate", "leadingProperty": "actDate", "columnIndex": 6}'/>
+								</table:customData>
+								<Text text="{/#Report/actDate/@sap:label}" wrapping="true"/>
+								<table:template>
+									<Text text="{path:'actDate',type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd.MM.yyyy'}}"/>
+								</table:template>
+							</table:Column>
+						</table:columns>
+						<table:rowActionTemplate>
+							<table:RowAction>
+								<table:RowActionItem type="Custom" text="{i18n>btGoruntule}" press="onCustomAction" icon="sap-icon://detail-view" id="btDisplay"/>
+								<table:RowActionItem type="Custom" text="{i18n>btDuzenle}" press="onCustomAction" icon="sap-icon://edit" id="btEdit"/>
+							</table:RowAction>
+						</table:rowActionTemplate>
+					</table:Table>
+				</smartTable:SmartTable>
+			</l:Splitter>
+		</semantic:content>
+		<semantic:customFooterContent>
+			<Toolbar id="dvFooter">
+				<ToolbarSpacer/>
+				<Button type="Neutral" text="{i18n>teamReport}" press="onShowTeamReport"/>
+				<Button type="Critical" text="{i18n>dvCreate}" press="createAct"/>
+			</Toolbar>
+		</semantic:customFooterContent>
+	</semantic:FullscreenPage>
+</mvc:View>
